@@ -1,0 +1,14 @@
+node_modules
+.next
+out
+data/*.db
+data/*.db-*
+data/uploads/*
+!data/uploads/.gitkeep
+public/uploads/*
+!public/uploads/.gitkeep
+.env*.local
+*.tsbuildinfo
+next-env.d.ts
+_ref
+vibe_images
