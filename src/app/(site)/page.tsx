@@ -176,7 +176,7 @@ export default function HomePage() {
               <div aria-hidden className="absolute -inset-2 rotate-2 rounded-[1.4rem] bg-[#f4d9ef]" />
               <div className="relative overflow-hidden rounded-[1.3rem] border-4 border-white bg-white shadow-xl">
                 <img
-                  src={content["site.principal_photo"] || "/assets/principal-placeholder.jpg"}
+                  src={content["site.principal_photo"] || "/assets/principal-placeholder.webp"}
                   alt={`${principalName} — placeholder portrait`}
                   className="h-[430px] w-full object-cover object-top"
                 />

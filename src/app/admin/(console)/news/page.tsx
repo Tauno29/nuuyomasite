@@ -71,7 +71,7 @@ export default async function AdminNewsPage({ searchParams }: { searchParams: Pr
                 </label>
                 <label className="block">
                   <span className={adminLabel}>Or image URL</span>
-                  <input name="image_url" defaultValue={editing?.image_url ?? ""} maxLength={500} className={`mt-1.5 ${adminInput}`} placeholder="/assets/gallery/campus.jpg" />
+                  <input name="image_url" defaultValue={editing?.image_url ?? ""} maxLength={500} className={`mt-1.5 ${adminInput}`} placeholder="/assets/gallery/campus.webp" />
                 </label>
               </div>
               {editing?.image_url && (

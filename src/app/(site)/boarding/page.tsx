@@ -60,7 +60,7 @@ export default function BoardingPage() {
           </div>
           <div className="relative">
             <img
-              src="/assets/gallery/campus.jpg"
+              src="/assets/gallery/campus.webp"
               alt="Illustrative placeholder view of the school campus"
               className="aspect-[4/3] w-full rounded-[1.8rem] border-4 border-white/30 object-cover shadow-2xl"
             />
@@ -125,7 +125,7 @@ export default function BoardingPage() {
         <div className="mx-auto max-w-[1160px] rounded-[2rem] bg-white p-8 shadow-[0_14px_34px_rgba(15,23,42,.06)] sm:p-12">
           <div className="grid items-center gap-8 lg:grid-cols-[auto_1fr]">
             <img
-              src={content["site.principal_photo"] || "/assets/principal-placeholder.jpg"}
+              src={content["site.principal_photo"] || "/assets/principal-placeholder.webp"}
               alt={`${principalName} — placeholder portrait`}
               className="mx-auto h-40 w-40 rounded-full border-4 border-[#e9faf6] object-cover object-top"
             />

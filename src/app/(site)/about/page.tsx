@@ -56,7 +56,7 @@ export default function AboutPage() {
           <div className="relative">
             <div aria-hidden className="absolute -inset-3 rotate-[-2deg] rounded-[1.8rem] bg-[#f8e5db]" />
             <img
-              src="/assets/gallery/campus.jpg"
+              src="/assets/gallery/campus.webp"
               alt="Illustrative placeholder view of a school campus"
               className="relative aspect-[4/3] w-full rounded-[1.5rem] border-4 border-white object-cover shadow-xl"
             />
@@ -174,7 +174,7 @@ export default function AboutPage() {
           <div className="mt-12 grid items-start gap-8 lg:grid-cols-[.42fr_1fr]">
             <div className="rounded-[1.6rem] border border-[#e2e8f0] bg-white p-5 text-center shadow-[0_10px_26px_rgba(15,23,42,.06)]">
               <img
-                src={content["site.principal_photo"] || "/assets/principal-placeholder.jpg"}
+                src={content["site.principal_photo"] || "/assets/principal-placeholder.webp"}
                 alt={`${principalName} — placeholder portrait`}
                 className="aspect-[4/5] w-full rounded-[1.2rem] object-cover object-top"
               />

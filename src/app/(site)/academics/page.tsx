@@ -55,13 +55,13 @@ export default function AcademicsPage() {
           </div>
           <div className="relative self-start">
             <img
-              src="/assets/gallery/science.jpg"
+              src="/assets/gallery/science.webp"
               alt="Illustrative science classroom placeholder"
               className="aspect-[4/3] w-full rounded-[1.5rem] border-4 border-white object-cover shadow-xl"
             />
             <div className="mt-5 flex gap-4">
               <img
-                src="/assets/gallery/library.jpg"
+                src="/assets/gallery/library.webp"
                 alt="Illustrative library placeholder"
                 className="aspect-square w-1/2 rounded-[1.2rem] object-cover shadow-lg"
               />

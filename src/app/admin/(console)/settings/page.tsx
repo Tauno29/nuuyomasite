@@ -63,7 +63,7 @@ export default async function AdminSettingsPage() {
         </AdminCard>
 
         <AdminCard title="Change password" description="Use at least 10 characters. Avoid reusing the password from another service.">
-          <ActionForm action={changeAdminPassword} submitLabel="Update password" pendingLabel="Updating…" tone="coral" resetOnSuccess>
+          <ActionForm action={updateAdminAccount} submitLabel="Update password" pendingLabel="Updating…" tone="coral" resetOnSuccess>
             <div className="grid gap-3">
               <label className="block">
                 <span className={adminLabel}>Current password *</span>

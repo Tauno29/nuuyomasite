@@ -832,8 +832,8 @@ export async function updateAdminAccount(_prev: FormState, formData: FormData): 
   const admin = await requireAdmin();
   const parsed = z
     .object({
-      name: z.string().trim().min(2, "Enter the administrator name.").max(120),
-      email: z.string().trim().toLowerCase().email("Enter a valid email address."),
+      name: z.string().trim().min(2, "Enter the administrator name.").max(120).optional(),
+      email: z.string().trim().toLowerCase().email("Enter a valid email address.").optional(),
       current_password: z.string().min(1, "Enter your current password."),
       new_password: z.string().max(200).optional().default(""),
       confirm_password: z.string().optional().default(""),
@@ -856,8 +856,8 @@ export async function updateAdminAccount(_prev: FormState, formData: FormData): 
   const passwordHash = parsed.data.new_password ? hashPassword(parsed.data.new_password) : row.passwordHash;
   try {
     db.prepare("UPDATE users SET name = ?, email = ?, password_hash = ? WHERE id = ?").run(
-      parsed.data.name,
-      parsed.data.email,
+      parsed.data.name ?? admin.name,
+      parsed.data.email ?? admin.email,
       passwordHash,
       admin.id,
     );
@@ -865,6 +865,6 @@ export async function updateAdminAccount(_prev: FormState, formData: FormData): 
     return fail("That email address is already in use.");
   }
 
-  const changed = parsed.data.new_password ? "email and password" : "email";
+  const changed = parsed.data.new_password ? "password" : "account details";
   return done(`Administrator account ${changed} updated.`);
 }

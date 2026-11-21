@@ -336,15 +336,15 @@ function seed() {
       "INSERT INTO gallery (title, category, image_url, caption, sort_order) VALUES (?, ?, ?, ?, ?)",
     );
     [
-      ["School Campus", "Campus", "/assets/gallery/campus.jpg", "A place to learn and grow."],
-      ["Classroom Learning", "Classrooms", "/assets/gallery/classroom.jpg", "Focused teaching and active participation."],
-      ["Science Laboratory", "Academics", "/assets/gallery/science.jpg", "Hands-on science investigation."],
-      ["Library & Study", "Academics", "/assets/gallery/library.jpg", "Quiet space for reading and revision."],
-      ["Sports Field", "Sports", "/assets/gallery/sports.jpg", "Teamwork, fitness and school spirit."],
-      ["Football at Nuuyoma", "Sports", "/assets/gallery/football.jpg", "Sport is part of school life."],
-      ["Cultural Day", "Culture", "/assets/gallery/culture.jpg", "Celebrating Namibian culture."],
-      ["School Assembly", "Events", "/assets/gallery/assembly.jpg", "Coming together as a school community."],
-      ["Computer Practice", "Classrooms", "/assets/gallery/computer.jpg", "Building digital skills for the future."],
+      ["School Campus", "Campus", "/assets/gallery/campus.webp", "A place to learn and grow."],
+      ["Classroom Learning", "Classrooms", "/assets/gallery/classroom.webp", "Focused teaching and active participation."],
+      ["Science Laboratory", "Academics", "/assets/gallery/science.webp", "Hands-on science investigation."],
+      ["Library & Study", "Academics", "/assets/gallery/library.webp", "Quiet space for reading and revision."],
+      ["Sports Field", "Sports", "/assets/gallery/sports.webp", "Teamwork, fitness and school spirit."],
+      ["Football at Nuuyoma", "Sports", "/assets/gallery/football.webp", "Sport is part of school life."],
+      ["Cultural Day", "Culture", "/assets/gallery/culture.webp", "Celebrating Namibian culture."],
+      ["School Assembly", "Events", "/assets/gallery/assembly.webp", "Coming together as a school community."],
+      ["Computer Practice", "Classrooms", "/assets/gallery/computer.webp", "Building digital skills for the future."],
     ].forEach(([title, category, image, caption], i) => insert.run(title, category, image, caption, i));
   }
 
@@ -360,7 +360,7 @@ function seed() {
       "Explore our new online home for school news, admissions information, the gallery and the learner portal.",
       "We are pleased to launch the new Nuuyoma Senior Secondary School website.\n\nThe site brings school announcements, admissions information, our gallery and a secure learner portal together in one place. Parents and guardians can also send a message directly to the school office.\n\nThis is a placeholder news story and can be edited or removed from the admin dashboard.",
       "News",
-      "/assets/gallery/campus.jpg",
+      "/assets/gallery/campus.webp",
       1,
       new Date().toISOString(),
     );
@@ -370,7 +370,7 @@ function seed() {
       "The school office is preparing the admission information for the next academic year. Please confirm all dates and requirements directly with the school.",
       "Admission information for the next academic year is being finalised by the school office.\n\nPlease use the online application form to register your interest, or contact the school office for the official requirements, dates and fee schedule. This notice will be updated when the school confirms the details.",
       "Admissions",
-      "/assets/gallery/classroom.jpg",
+      "/assets/gallery/classroom.webp",
       0,
       new Date(Date.now() - 86400000).toISOString(),
     );
@@ -380,7 +380,7 @@ function seed() {
       "Examination timetables and notices will be published here as soon as they are released.",
       "Examination timetables, entry information and invigilation notices will be published on this page and in the announcements section as soon as they are released by the school or the Ministry of Education, Arts and Culture.\n\nLearners should also check the notice boards at school.",
       "Examinations",
-      "/assets/gallery/science.jpg",
+      "/assets/gallery/science.webp",
       0,
       new Date(Date.now() - 172800000).toISOString(),
     );
@@ -435,6 +435,12 @@ function seed() {
   }
 }
 
+function migrateLegacyImageUrls() {
+  db.prepare("UPDATE gallery SET image_url = REPLACE(image_url, '.jpg', '.webp') WHERE image_url LIKE '/assets/gallery/%.jpg'").run();
+  db.prepare("UPDATE news SET image_url = REPLACE(image_url, '.jpg', '.webp') WHERE image_url LIKE '/assets/gallery/%.jpg'").run();
+  db.prepare("UPDATE content SET value = '/assets/principal-placeholder.webp' WHERE key = 'site.principal_photo' AND value = '/assets/principal-placeholder.jpg'").run();
+}
+
 function movePrivateUploads() {
   const publicDir = path.join(process.cwd(), "public", "uploads");
   const privateDir = path.join(process.cwd(), "data", "uploads");
@@ -464,6 +470,7 @@ export function ensureDatabase() {
   // Acquire a write lock before checking counts so concurrent build workers
   // cannot both insert the same seed rows.
   db.transaction(seed).immediate();
+  migrateLegacyImageUrls();
   movePrivateUploads();
   initialised = true;
 }

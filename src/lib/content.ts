@@ -132,7 +132,7 @@ export const contentDefaults: Record<string, string> = {
   "site.principal_title": "Principal",
   "site.principal_message":
     "Welcome to Nuuyoma Senior Secondary School. Our school is a place where learners are challenged to think deeply, act with integrity and serve their community. I invite you to explore this website, learn about our programmes and join us in building a future of which every learner can be proud. This message is a placeholder and can be updated by the school administration.",
-  "site.principal_photo": "/assets/principal-placeholder.jpg",
+  "site.principal_photo": "/assets/principal-placeholder.webp",
 
   "alert.enabled": "yes",
   "alert.message": "The 2027 admission information page is being updated. Please check back soon.",

@@ -46,7 +46,7 @@ export default function AdminGalleryPage() {
               </label>
               <label className="block">
                 <span className={adminLabel}>Or image URL</span>
-                <input name="image_url" maxLength={500} className={`mt-1.5 ${adminInput}`} placeholder="/assets/gallery/campus.jpg" />
+                <input name="image_url" maxLength={500} className={`mt-1.5 ${adminInput}`} placeholder="/assets/gallery/campus.webp" />
               </label>
               <label className="block">
                 <span className={adminLabel}>Caption (optional)</span>
